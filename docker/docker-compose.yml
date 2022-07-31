@@ -1,0 +1,27 @@
+version: '2'
+services:
+    php-apache-dev:
+        image: 'webdevops/php-apache-dev:8.1'
+        ports:
+            - '80:80'
+            - '443:443'
+        links:
+            - 'mysql:db'
+        depends_on: []
+        environment:
+            - PHP_DISPLAY_ERRORS=1
+            - PHP_POST_MAX_SIZE=1G
+            - PHP_UPLOAD_MAX_FILESIZE=1G
+            - PHP_MEMORY_LIMIT=3072M
+            - PHP_MAX_EXECUTION_TIME=99999
+            - WEB_DOCUMENT_ROOT=/app/public
+        volumes:
+            - './php:/app'
+    mysql:
+        environment:
+            - MYSQL_ROOT_PASSWORD=demo1234
+        ports:
+            - '3360:3306'
+        volumes:
+            - './mysql:/var/lib/mysql'
+        image: 'mysql'
