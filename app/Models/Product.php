@@ -13,7 +13,12 @@ class Product extends Model
     {
 //        return money_format('$%i', $this->price / 100);
 
-        $fmt = new \NumberFormatter( 'en_US', \NumberFormatter::CURRENCY );
-        return $fmt->formatCurrency($this->price / 100, 'USD');
+        $fmt = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+        return str_replace(',', '', $fmt->formatCurrency($this->price / 100, 'USD'));
+    }
+
+    public function scopeMightAlsoLike($query)
+    {
+        return $query->inRandomOrder()->take(4);
     }
 }
