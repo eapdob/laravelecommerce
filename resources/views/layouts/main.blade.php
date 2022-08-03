@@ -12,11 +12,14 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @yield('extra-tags')
 </head>
 <body>
 <div id="app">
     @include('partials.nav')
     @yield('content')
 </div>
+@yield('extra-scripts')
 </body>
 </html>

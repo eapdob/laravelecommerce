@@ -29,6 +29,9 @@ Route::get('/saveForLater/empty', 'App\Http\Controllers\SaveForLaterController@e
 Route::delete('/saveForLater/{id}', 'App\Http\Controllers\SaveForLaterController@destroy')->name('saveForLater.destroy');
 Route::post('/saveForLater/switchToCart/{id}', 'App\Http\Controllers\SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
+Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index')->name('checkout.index');
+Route::post('/checkout/createStripePayment', 'App\Http\Controllers\CheckoutController@createStripePayment')->name('checkout.createStripePayment');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
