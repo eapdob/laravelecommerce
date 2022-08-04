@@ -38,9 +38,13 @@
                     @foreach (Cart::instance('default')->content() as $item)
                         <div class="cart-table-row">
                             <div class="cart-table-row-left">
-                                <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.jpg') }}" alt="item" class="cart-table-img"></a>
+                                <a href="{{ route('shop.show', $item->model->slug) }}"><img
+                                        src="{{ asset('img/products/' . $item->model->slug . '.jpg') }}" alt="item"
+                                        class="cart-table-img"></a>
                                 <div class="cart-item-details">
-                                    <div class="cart-table-item"><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
+                                    <div class="cart-table-item"><a
+                                            href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a>
+                                    </div>
                                     <div class="cart-table-description">{{ $item->model->details }}</div>
                                 </div>
                             </div>
@@ -59,15 +63,14 @@
                                     </form>
                                 </div>
                                 <div>
-                                    <select class="quantity">
-                                        <option selected="">1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select class="quantity" data-id="{{ $item->rowId }}">
+                                        @foreach ([1,2,3,4,5] as $quantity)
+                                            <option
+                                                @if ($item->qty == $quantity) selected=""@endif>{{ $quantity }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                                <div>{{ $item->model->presentPrice() }}</div>
+                                <div>{{ presentPrice($item->subtotal) }}</div>
                             </div>
                         </div> <!-- end cart-table-row -->
                     @endforeach
@@ -81,7 +84,8 @@
                 </div> <!-- end have-code-container -->
                 <div class="cart-totals">
                     <div class="cart-totals-left">
-                        Shipping is free because we’re awesome like that. Also because that’s additional stuff I don’t feel like figuring out :).
+                        Shipping is free because we’re awesome like that. Also because that’s additional stuff I don’t
+                        feel like figuring out :).
                     </div>
                     <div class="cart-totals-right">
                         <div>
@@ -92,7 +96,8 @@
                         <div class="cart-totals-subtotal">
                             {{ presentPrice(Cart::instance('default')->subtotal()) }} <br>
                             {{ presentPrice(Cart::instance('default')->tax()) }} <br>
-                            <span class="cart-totals-total">{{ presentPrice(Cart::instance('default')->total()) }}</span>
+                            <span
+                                class="cart-totals-total">{{ presentPrice(Cart::instance('default')->total()) }}</span>
                         </div>
                     </div>
                 </div> <!-- end cart-totals -->
@@ -112,9 +117,13 @@
                     <div class="saved-for-later cart-table">
                         <div class="cart-table-row">
                             <div class="cart-table-row-left">
-                                <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.jpg') }}" alt="item" class="cart-table-img"></a>
+                                <a href="{{ route('shop.show', $item->model->slug) }}"><img
+                                        src="{{ asset('img/products/' . $item->model->slug . '.jpg') }}" alt="item"
+                                        class="cart-table-img"></a>
                                 <div class="cart-item-details">
-                                    <div class="cart-table-item"><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
+                                    <div class="cart-table-item"><a
+                                            href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a>
+                                    </div>
                                     <div class="cart-table-description">{{ $item->model->details }}</div>
                                 </div>
                             </div>
@@ -143,4 +152,29 @@
         </div>
     </div> <!-- end cart-section -->
     @include('partials.might-like')
+@endsection
+
+@section('extra-scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        (function () {
+            const classname = document.querySelectorAll('.quantity');
+
+            Array.from(classname).forEach(function (element) {
+                element.addEventListener('change', function () {
+                    const id = element.getAttribute('data-id');
+                    axios.patch(`/cart/${id}`, {
+                        quantity: this.value
+                    })
+                    .then(function (response) {
+                        // console.log(response);
+                        window.location.href = '{{ route('cart.index') }}';
+                    })
+                    .catch(function (error) {
+                        // console.log(error);
+                    });
+                });
+            });
+        })();
+    </script>
 @endsection
