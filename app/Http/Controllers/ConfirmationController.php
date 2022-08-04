@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\CheckoutRequest;
-use Cartalyst\Stripe\Exception\CardErrorException;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
-class CheckoutController extends Controller
+class ConfirmationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +13,11 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('checkout');
+        if (!session()->has('success_message')) {
+            return redirect('/');
+        }
+
+        return view('thankyou');
     }
 
     /**
@@ -37,32 +36,9 @@ class CheckoutController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CheckoutRequest $request)
+    public function store(Request $request)
     {
-        // Check race condition when there are less items available to purchase
-        $contents = Cart::content()->map(function ($item) {
-            return $item->model->slug . ', ' . $item->qty;
-        })->values()->toJson();
-
-        try {
-            $charge = Stripe::charges()->create([
-                'amount' => Cart::total() / 100,
-                'currency' => 'USD',
-                'source' => $request->stripeToken,
-                'description' => 'Order',
-                'receipt_email' => $request->email,
-                'metadata' => [
-                    'contents' => $contents,
-                    'quantity' => Cart::instance('default')->count(),
-                ],
-            ]);
-
-            Cart::instance('default')->destroy();
-
-            return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
-        } catch (CardErrorException $e) {
-            return back()->withErrors('Error! ' . $e->getMessage());
-        }
+        //
     }
 
     /**
