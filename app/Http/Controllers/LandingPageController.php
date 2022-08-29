@@ -14,7 +14,7 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        $products = Product::mightAlsoLike()->get();
+        $products = Product::where('featured', true)->take(7)->get();
 
         return view('landing-page')->with('products', $products);
     }
