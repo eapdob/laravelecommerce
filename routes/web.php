@@ -30,6 +30,9 @@ Route::get('/saveForLater/empty', 'App\Http\Controllers\SaveForLaterController@e
 Route::delete('/saveForLater/{id}', 'App\Http\Controllers\SaveForLaterController@destroy')->name('saveForLater.destroy');
 Route::post('/saveForLater/switchToCart/{id}', 'App\Http\Controllers\SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
+Route::post('/coupon', 'App\Http\Controllers\CouponsController@store')->name('coupon.store');
+Route::delete('/coupon', 'App\Http\Controllers\CouponsController@destroy')->name('coupon.destroy');
+
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index');
 Route::post('/checkout/store', 'App\Http\Controllers\CheckoutController@store')->name('checkout.store');
 
