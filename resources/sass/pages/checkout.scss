@@ -107,3 +107,22 @@ h1.checkout-heading {
 #card-errors {
     color: #fa755a;
 }
+
+.checkout-coupons {
+    padding: 12px 0;
+}
+
+.checkout-coupons > a {
+    display: block;
+    margin: 0 0 12px;
+}
+
+.checkout-coupons > form {
+    display: flex;
+    padding: 14px;
+    border: 1px solid #333;
+}
+
+.checkout-coupons > form > input {
+    flex-grow: 2;
+}
