@@ -17,7 +17,14 @@ class CartController extends Controller
     public function index()
     {
         $mightAlsoLike = Product::mightAlsoLike()->get();
-        return view('cart')->with('mightAlsoLike', $mightAlsoLike);
+
+        return view('cart')->with([
+            'mightAlsoLike' => $mightAlsoLike,
+            'discount' => $this->getNumbers()->get('discount'),
+            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
+            'newTax' => $this->getNumbers()->get('newTax'),
+            'newTotal' => $this->getNumbers()->get('newTotal')
+        ]);
     }
 
     /**
@@ -150,5 +157,20 @@ class CartController extends Controller
 
         session()->flash('success_message', 'Quantity was updated successfully');
         return response()->json(['success' => true]);
+    }
+
+    private function getNumbers() {
+        $tax = config('cart.tax') / 100;
+        $discount = session()->get('coupon')['discount'] ?? 0;
+        $newSubtotal = (Cart::subtotal() - $discount);
+        $newTax = $newSubtotal * $tax;
+        $newTotal = $newSubtotal * (1 + $tax);
+
+        return collect([
+            'discount' => $discount,
+            'newSubtotal' => $newSubtotal,
+            'newTax' => $newTax,
+            'newTotal' => $newTotal
+        ]);
     }
 }
