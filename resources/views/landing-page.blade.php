@@ -32,7 +32,7 @@
             <p>Includes multiple products, categories, a shopping cart and a checkout system with Stripe
                 integration.</p>
             <div class="hero-buttons">
-                <a href="#" class="button button-white">Screencast</a>
+                <a href="#" class="button button-white">Screencasts</a>
                 <a href="#" class="button button-white">GitHub</a>
             </div>
         </div> <!-- end hero-copy -->
