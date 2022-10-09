@@ -84,7 +84,7 @@
 
         <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore vitae nisi,
             consequuntur illum dolores cumque pariatur quis provident deleniti nesciunt officia est reprehenderit sunt
-            aliquid possimus temporibus enim eum hic.</p>
+            aliquid possimus temporibus enim eum hic. </p>
 
         <div class="blog-posts">
             <div class="blog-post" id="blog1">
