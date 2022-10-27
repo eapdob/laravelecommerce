@@ -27,9 +27,9 @@
             <div class="product-section-subtitle">{{ $product->details }}</div>
             <div class="product-section-price">{{ $product->presentPrice() }}</div>
 
-            <p>
-                {{ $product->description }}
-            </p>
+            <div>
+                {!! $product->description !!}
+            </div>
             <form action="{{ route('cart.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="id" value="{{ $product->id }}">
