@@ -16,3 +16,5 @@
 /.vscode
 /composer.lock
 /package-lock.json
+/.htaccess
+/public/--adminer.php
