@@ -11,3 +11,7 @@ function presentPrice($price)
 function setCategoryActive($slug) {
     return request()->category === $slug ? 'active' : '';
 }
+
+function productImage($path) {
+    return (($path !== null) && file_exists('storage/' . $path)) ? asset('storage/' . $path) : asset('img/not-found.jpg');
+}

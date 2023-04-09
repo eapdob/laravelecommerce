@@ -37,7 +37,7 @@
             <div class="products text-center">
                 @forelse ($products as $item)
                     <div class="product">
-                        <a href="{{ route('shop.show', $item->slug) }}"><img src="{{ asset('img/products/' . $item->slug . '.jpg') }}" alt="product"></a>
+                        <a href="{{ route('shop.show', $item->slug) }}"><img src="{{ productImage($item->image) }}" alt="product"></a>
                         <a href="{{ route('shop.show', $item->slug) }}"><div class="product-name">{{ $item->name }}</div></a>
                         <div class="product-price">{{ $item->presentPrice() }}</div>
                     </div>

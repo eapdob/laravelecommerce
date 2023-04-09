@@ -41,3 +41,8 @@ Route::get('/thankyou', 'App\Http\Controllers\ConfirmationController@index')->na
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

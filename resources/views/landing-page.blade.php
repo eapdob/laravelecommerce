@@ -11,20 +11,7 @@
 <header class="with-background">
     <div class="top-nav container">
         <div class="logo">Laravel Ecommerce</div>
-        <ul>
-            <li><a href="{{ route('shop.index') }}">Shop</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li>
-                <a href="{{ route('cart.index') }}">Cart
-                    @if (Cart::instance('default')->count() > 0)
-                        <span class="cart-count">
-                            <span>{{ Cart::instance('default')->count() }}</span>
-                        </span>
-                    @endif
-                </a>
-            </li>
-        </ul>
+        {{ menu('main', 'partials.menus.main') }}
     </div> <!-- end top-nav -->
     <div class="hero container">
         <div class="hero-copy">
@@ -61,7 +48,7 @@
             @foreach ($products as $product)
                 <div class="product">
                     <a href="{{ route('shop.show', $product->slug) }}"><img
-                            src="{{ asset('img/products/' . $product->slug . '.jpg') }}" alt="product"></a>
+                            src="{{ productImage($product->image) }}" alt="product"></a>
                     <a href="{{ route('shop.show', $product->slug) }}">
                         <div class="product-name">{{ $product->name }}</div>
                     </a>
