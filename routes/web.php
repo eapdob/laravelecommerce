@@ -33,7 +33,7 @@ Route::post('/saveForLater/switchToCart/{id}', 'App\Http\Controllers\SaveForLate
 Route::post('/coupon', 'App\Http\Controllers\CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'App\Http\Controllers\CouponsController@destroy')->name('coupon.destroy');
 
-Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index');
+Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index')->middleware('auth');
 Route::post('/checkout/store', 'App\Http\Controllers\CheckoutController@store')->name('checkout.store');
 
 Route::get('/thankyou', 'App\Http\Controllers\ConfirmationController@index')->name('confirmation.index');
@@ -46,3 +46,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
