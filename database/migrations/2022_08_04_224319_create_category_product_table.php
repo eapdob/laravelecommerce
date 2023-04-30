@@ -16,9 +16,9 @@ return new class extends Migration
         if (!Schema::hasTable('category_product')) {
             Schema::create('category_product', function (Blueprint $table) {
                 $table->id();
-                $table->integer('product_id')->unsigned()->nullable();
+                $table->unsignedBigInteger('product_id')->nullable();
                 $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
-                $table->integer('category_id')->unsigned()->nullable();
+                $table->unsignedBigInteger('category_id')->nullable();
                 $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
                 $table->timestamps();
             });
