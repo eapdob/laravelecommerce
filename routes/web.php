@@ -36,6 +36,8 @@ Route::delete('/coupon', 'App\Http\Controllers\CouponsController@destroy')->name
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index')->middleware('auth');
 Route::post('/checkout/store', 'App\Http\Controllers\CheckoutController@store')->name('checkout.store');
 
+Route::get('/guestCheckout', 'App\Http\Controllers\CheckoutController@index')->name('guestCheckout.index');
+
 Route::get('/thankyou', 'App\Http\Controllers\ConfirmationController@index')->name('confirmation.index');
 
 Auth::routes();
