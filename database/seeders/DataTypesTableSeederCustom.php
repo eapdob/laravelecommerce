@@ -69,6 +69,20 @@ class DataTypesTableSeederCustom extends Seeder
                 'description'           => '',
             ])->save();
         }
+
+        $dataType = $this->dataType('name', 'order');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'slug' => 'order',
+                'display_name_singular' => 'Order',
+                'display_name_plural' => 'Orders',
+                'icon' => 'voyager-documentation',
+                'model_name' => 'App\Models\Order',
+                'controller' => '\App\Http\Controllers\Voyager\OrdersController',
+                'generate_permissions' => 1,
+                'description' => '',
+            ])->save();
+        }
     }
 
     /**

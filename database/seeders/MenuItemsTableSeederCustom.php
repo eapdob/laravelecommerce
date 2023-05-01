@@ -28,25 +28,26 @@ class MenuItemsTableSeederCustom extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Dashboard',
-                'url'     => '',
-                'route'   => 'voyager.dashboard',
+                'title' => 'Dashboard',
+                'url' => '',
+                'route' => 'voyager.dashboard',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-boat',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 1,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 1,
             ])->save();
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
                 'title' => 'Orders',
-                'url' => '/admin/orders',
+                'url' => '/admin/order',
                 'route' => null,
             ]);
+
             if (!$menuItem->exists) {
                 $menuItem->fill([
                     'target' => '_self',
@@ -59,237 +60,240 @@ class MenuItemsTableSeederCustom extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Products',
-                'url'     => '/admin/product',
-                'route'   => null,
+                'title' => 'Products',
+                'url' => '/admin/product',
+                'route' => null,
             ]);
+
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => 'voyager-bag',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 3,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 3,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Categories',
-                'url'     => '/admin/category',
-                'route'   => null,
+                'title' => 'Categories',
+                'url' => '/admin/category',
+                'route' => null,
             ]);
+
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => 'voyager-tag',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 4,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 4,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Coupons',
-                'url'     => '/admin/coupons',
-                'route'   => null,
+                'title' => 'Coupons',
+                'url' => '/admin/coupons',
+                'route' => null,
             ]);
+
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => 'voyager-dollar',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 5,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 5,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Category Products',
-                'url'     => '/admin/category-product',
-                'route'   => null,
+                'title' => 'Category Products',
+                'url' => '/admin/category-product',
+                'route' => null,
             ]);
+
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => 'voyager-categories',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 6,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 6,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Roles',
-                'url'     => '',
-                'route'   => 'voyager.roles.index',
+                'title' => 'Roles',
+                'url' => '',
+                'route' => 'voyager.roles.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-lock',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 7,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 7,
             ])->save();
-
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Users',
-                'url'     => '',
-                'route'   => 'voyager.users.index',
+                'title' => 'Users',
+                'url' => '',
+                'route' => 'voyager.users.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-person',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 8,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 8,
             ])->save();
 
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Media',
-                'url'     => '',
-                'route'   => 'voyager.media.index',
+                'title' => 'Media',
+                'url' => '',
+                'route' => 'voyager.media.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-images',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 9,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 9,
             ])->save();
 
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Posts',
-                'url'     => '',
-                'route'   => 'voyager.posts.index',
+                'title' => 'Posts',
+                'url' => '',
+                'route' => 'voyager.posts.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-news',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 10,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 10,
             ])->save();
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Pages',
-                'url'     => '',
-                'route'   => 'voyager.pages.index',
+                'title' => 'Pages',
+                'url' => '',
+                'route' => 'voyager.pages.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-file-text',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 11,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 11,
             ])->save();
 
             $toolsMenuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Tools',
-                'url'     => '',
+                'title' => 'Tools',
+                'url' => '',
             ]);
 
             $toolsMenuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-tools',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 12,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 12,
             ])->save();
 
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Settings',
-                'url'     => '',
-                'route'   => 'voyager.settings.index',
+                'title' => 'Settings',
+                'url' => '',
+                'route' => 'voyager.settings.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-settings',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 13,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 13,
             ])->save();
 
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Categories',
-                'url'     => '',
-                'route'   => 'voyager.categories.index',
+                'title' => 'Categories',
+                'url' => '',
+                'route' => 'voyager.categories.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-categories',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 14,
+                'color' => null,
+                'parent_id' => null,
+                'order' => 14,
             ])->save();
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Menu Builder',
-                'url'     => '',
-                'route'   => 'voyager.menus.index',
+                'title' => 'Menu Builder',
+                'url' => '',
+                'route' => 'voyager.menus.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-list',
-                'color'      => null,
-                'parent_id'  => $toolsMenuItem->id,
-                'order'      => 1,
+                'color' => null,
+                'parent_id' => $toolsMenuItem->id,
+                'order' => 1,
             ])->save();
 
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Database',
-                'url'     => '',
-                'route'   => 'voyager.database.index',
+                'title' => 'Database',
+                'url' => '',
+                'route' => 'voyager.database.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-data',
-                'color'      => null,
-                'parent_id'  => $toolsMenuItem->id,
-                'order'      => 2,
+                'color' => null,
+                'parent_id' => $toolsMenuItem->id,
+                'order' => 2,
             ])->save();
 
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Compass',
-                'url'     => '',
-                'route'   => 'voyager.compass.index',
+                'title' => 'Compass',
+                'url' => '',
+                'route' => 'voyager.compass.index',
             ]);
 
             $menuItem->fill([
-                'target'     => '_self',
+                'target' => '_self',
                 'icon_class' => 'voyager-compass',
-                'color'      => null,
-                'parent_id'  => $toolsMenuItem->id,
-                'order'      => 3,
+                'color' => null,
+                'parent_id' => $toolsMenuItem->id,
+                'order' => 3,
             ])->save();
 
             /*
@@ -302,49 +306,49 @@ class MenuItemsTableSeederCustom extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Shop',
-                'url'     => '',
-                'route'   => 'shop.index',
+                'title' => 'Shop',
+                'url' => '',
+                'route' => 'shop.index',
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 1,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 1,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'About',
-                'url'     => '#',
-                'route'   => null,
+                'title' => 'About',
+                'url' => '#',
+                'route' => null,
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 2,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 2,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Blog',
-                'url'     => 'https://laravelecommerce.loc',
-                'route'   => null,
+                'title' => 'Blog',
+                'url' => 'https://laravelecommerce.loc',
+                'route' => null,
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 2,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 2,
                 ])->save();
             }
 
@@ -358,81 +362,81 @@ class MenuItemsTableSeederCustom extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'Follow Me:',
-                'url'     => '',
-                'route'   => null,
+                'title' => 'Follow Me:',
+                'url' => '',
+                'route' => null,
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 1,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 1,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'fa-globe',
-                'url'     => '/',
-                'route'   => null,
+                'title' => 'fa-globe',
+                'url' => '/',
+                'route' => null,
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 2,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 2,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'fa-youtube',
-                'url'     => '/',
-                'route'   => null,
+                'title' => 'fa-youtube',
+                'url' => '/',
+                'route' => null,
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 2,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 2,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'fa-github',
-                'url'     => '/',
-                'route'   => null,
+                'title' => 'fa-github',
+                'url' => '/',
+                'route' => null,
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 2,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 2,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'fa-twitter',
-                'url'     => '/',
-                'route'   => null,
+                'title' => 'fa-twitter',
+                'url' => '/',
+                'route' => null,
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
-                    'target'     => '_self',
+                    'target' => '_self',
                     'icon_class' => null,
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 2,
+                    'color' => null,
+                    'parent_id' => null,
+                    'order' => 2,
                 ])->save();
             }
         }
