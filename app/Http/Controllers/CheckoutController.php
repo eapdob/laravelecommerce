@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\CheckoutRequest;
+use App\Mail\OrderPlaced;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -73,7 +75,8 @@ class CheckoutController extends Controller
                 ],
             ]);
 
-            $this->addToOrdersTables($request, null);
+            $order = $this->addToOrdersTables($request, null);
+            Mail::send(new OrderPlaced($order));
 
             Cart::instance('default')->destroy();
 
@@ -175,5 +178,7 @@ class CheckoutController extends Controller
                 'quantity' => $item->qty,
             ]);
         }
+
+        return $order;
     }
 }
