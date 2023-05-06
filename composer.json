@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
+        "nicolaslopezj/searchable": "^1.13",
         "tcg/voyager": "^1.6"
     },
     "require-dev": {

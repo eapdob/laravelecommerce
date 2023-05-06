@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ShopController extends Controller
 {
@@ -114,6 +115,14 @@ class ShopController extends Controller
 
     public function search(Request $request)
     {
-        return view('search-results');
+        $request->validate([
+            'query' => 'required|min:3',
+        ]);
+
+        $query = $request->input('query');
+
+        $products = Product::search($query)->paginate(10);
+
+        return view('search-results')->with('products', $products);
     }
 }
