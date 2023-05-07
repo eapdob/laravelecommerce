@@ -2,8 +2,8 @@
 
 @section('title', 'Shopping Cart')
 
-@section('extra-css')
-
+@section('extra-tags')
+    <link rel="stylesheet" href="{{ asset('css/algolia.css') }}">
 @endsection
 
 @section('content')
@@ -73,16 +73,16 @@
                         </div> <!-- end cart-table-row -->
                     @endforeach
                 </div> <!-- end cart-table -->
-                    @if (!session('coupon'))
-                        <div class="checkout-coupons">
-                            <a href="#" class="have-code">Have a Code?</a>
-                            <form action="{{ route('coupon.store') }}" method="POST">
-                                @csrf
-                                <input type="text" name="coupon_code" id="coupon_code">
-                                <button type="submit" class="button button-plain">Apply</button>
-                            </form>
-                        </div> <!-- end have-code-container -->
-                    @endif
+                @if (!session('coupon'))
+                    <div class="checkout-coupons">
+                        <a href="#" class="have-code">Have a Code?</a>
+                        <form action="{{ route('coupon.store') }}" method="POST">
+                            @csrf
+                            <input type="text" name="coupon_code" id="coupon_code">
+                            <button type="submit" class="button button-plain">Apply</button>
+                        </form>
+                    </div> <!-- end have-code-container -->
+                @endif
                 <div class="cart-totals">
                     <div class="cart-totals-left">
                         Shipping is free because we’re awesome like that. Also because that’s additional stuff I don’t
@@ -91,13 +91,16 @@
                     <div class="cart-totals-right">
                         <div>
                             Subtotal <br>
-                            @if (session('coupon')) Discount ({{ session()->get('coupon')['name'] }}) :
-                            <form action="{{ route('coupon.destroy') }}" method="POST" style="display: inline-block;">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button type="submit" style="font-size: 14px;">Remove</button>
-                            </form><br><hr>
-                            New Subtotal<br>
+                            @if (session('coupon'))
+                                Discount ({{ session()->get('coupon')['name'] }}) :
+                                <form action="{{ route('coupon.destroy') }}" method="POST"
+                                      style="display: inline-block;">
+                                    {{ csrf_field() }}
+                                    {{ method_field('delete') }}
+                                    <button type="submit" style="font-size: 14px;">Remove</button>
+                                </form><br>
+                                <hr>
+                                New Subtotal<br>
                             @endif
                             Tax (13%)<br>
                             <span class="checkout-totals-total">Total</span>
@@ -180,15 +183,19 @@
                     axios.patch(`/cart/${id}`, {
                         quantity: this.value
                     })
-                    .then(function (response) {
-                        // console.log(response);
-                        window.location.href = '{{ route('cart.index') }}';
-                    })
-                    .catch(function (error) {
-                        // console.log(error);
-                    });
+                        .then(function (response) {
+                            // console.log(response);
+                            window.location.href = '{{ route('cart.index') }}';
+                        })
+                        .catch(function (error) {
+                            // console.log(error);
+                        });
                 });
             });
         })();
     </script>
+    <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+    <script src="{{ asset('js/algolia.js') }}"></script>
 @endsection

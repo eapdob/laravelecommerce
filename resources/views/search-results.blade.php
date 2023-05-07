@@ -2,8 +2,8 @@
 
 @section('title', 'Search')
 
-@section('extra-css')
-
+@section('extra-tags')
+    <link rel="stylesheet" href="{{ asset('css/algolia.css') }}">
 @endsection
 
 @section('content')
@@ -38,22 +38,22 @@
         @if ($products->total() > 0)
             <table class="table table-bordered table-striped">
                 <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Details</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                    </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
-                        <tr>
-                            <th><a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a></th>
-                            <td>{{ $product->details }}</td>
-                            <td>{{ Str::limit($product->description, 80) }}</td>
-                            <td>{{ $product->presentPrice() }}</td>
-                        </tr>
-                    @endforeach
+                @foreach ($products as $product)
+                    <tr>
+                        <th><a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a></th>
+                        <td>{{ $product->details }}</td>
+                        <td>{{ Str::limit($product->description, 80) }}</td>
+                        <td>{{ $product->presentPrice() }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 
@@ -64,4 +64,8 @@
 @endsection
 
 @section('extra-scripts')
+    <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+    <script src="{{ asset('js/algolia.js') }}"></script>
 @endsection

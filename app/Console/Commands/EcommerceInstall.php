@@ -45,14 +45,10 @@ class EcommerceInstall extends Command
         File::deleteDirectory(public_path('storage/posts'));
         File::deleteDirectory(public_path('storage/users'));
 
-        File::deleteDirectory(public_path('storage/public/dummy'));
-
         $this->callSilent('storage:link');
-
         $copySuccess = File::copyDirectory(public_path('img/products'), public_path('storage/products/dummy'));
-
         if ($copySuccess) {
-            $this->info('Image successfully copied to storage');
+            $this->info('Images successfully copied to storage folder.');
         }
 
         File::copyDirectory(public_path('img/pages'), public_path('storage/pages'));
@@ -117,6 +113,14 @@ class EcommerceInstall extends Command
         $this->call('db:seed', [
             '--class' => 'UsersTableSeederCustom',
             '--force' => true,
+        ]);
+
+        $this->call('scout:clear', [
+            'model' => 'App\\Models\\Product',
+        ]);
+
+        $this->call('scout:import', [
+            'model' => 'App\\Models\\Product',
         ]);
 
         $this->info('Dummy data installed');
