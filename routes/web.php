@@ -54,3 +54,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/search', [App\Http\Controllers\ShopController::class, 'search'])->name('search');
+
+Route::get('/search-algolia', [App\Http\Controllers\ShopController::class, 'searchAlgolia'])->name('search-algolia');
