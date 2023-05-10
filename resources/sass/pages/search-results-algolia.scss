@@ -6,7 +6,7 @@
     grid-gap: 20px;
 }
 
-.ais-hits--item {
+.ais-results {
     .instantsearch-result {
         display:flex;
         align-items: center;
@@ -50,4 +50,12 @@
     background: rgba(39,81,108,.2) !important;
     margin-left: auto;
     margin-right: 57px;
+}
+
+ul.ais-pagination > li {
+    padding: 4px 12px;
+}
+
+ul.ais-pagination {
+    display: flex;
 }

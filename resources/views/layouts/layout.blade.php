@@ -15,10 +15,11 @@
 
     @yield('extra-tags')
 </head>
-<body>
-<div>
+<body class="@yield('body-class', '')">
+<div id="app">
     @include('partials.nav')
     @yield('content')
+    @include('partials.footer')
 </div>
 @yield('extra-scripts')
 @vite(['resources/js/app.js'])

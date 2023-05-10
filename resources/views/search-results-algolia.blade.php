@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.layout')
 
 @section('title', 'Search Results Algolia')
 
@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('css/algolia.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+    <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
 @endsection
 
 @section('content')
@@ -35,40 +39,56 @@
     </div>
 
     <div class="container">
-        <div class="search-results-container-algolia">
-            <div>
-                <h2>Search</h2>
-                <div id="search-box">
-                    <!-- SearchBox widget will appear here -->
+
+
+        <ais-index app-id="SNWA7FUSO1" api-key="1319fe7e2d8e4e227cef43d5fbcd092f" index-name="product">
+            <div class="search-results-container-algolia">
+                <div>
+                    <h2>Search</h2>
+                    <ais-search-box></ais-search-box>
+
+                    <ais-stats></ais-stats>
+
+                    <div class="spacer"></div>
+                    <h2>Categories</h2>
+                    <ais-refinement-list attribute-name="categories"></ais-refinement-list>
                 </div>
 
-                <div id="stats-container"></div>
-
-                <div class="spacer"></div>
-                <h2>Categories</h2>
-                <div id="refinement-list">
-                    <!-- RefinementList widget will appear here -->
+                <div>
+                    <ais-results>
+                        <template slot-scope="{ result }">
+                            <div>
+                                <a :href="`/shop/${result.slug}`">
+                                    <div class="instantsearch-result">
+                                        <div>
+                                            <img :src="`/storage/${result.image}`" alt="img" class="algolia-thumb-result">
+                                        </div>
+                                        <div>
+                                            <div class="result-title">
+                                                <ais-highlight :result="result" attribute-name="name"></ais-highlight>
+                                            </div>
+                                            <div class="result-details">
+                                                <ais-highlight :result="result" attribute-name="details"></ais-highlight>
+                                            </div>
+                                            <div class="result-price">
+                                                $@{{ (result.price / 100).toFixed(2) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <hr>
+                            </div>
+                        </template>
+                    </ais-results>
+                    <ais-pagination></ais-pagination>
                 </div>
-            </div>
-
-            <div>
-                <div id="hits">
-                    <!-- Hits widget will appear here -->
-                </div>
-
-                <div id="pagination">
-                    <!-- Pagination widget will appear here -->
-                </div>
-            </div>
-        </div> <!-- end search-results-container-algolia -->
+            </div> <!-- end search-results-container-algolia -->
+        </ais-index>
     </div> <!-- end container -->
 @endsection
 
 @section('extra-scripts')
-    <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-    <script src="{{ asset('js/algolia.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
-    <script src="{{ asset('js/algolia-instantsearch.js') }}"></script>
 @endsection

@@ -20,7 +20,7 @@
     @include('partials.nav')
     @yield('content')
 </div>
-@yield('extra-scripts')
 @vite(['resources/js/app.js'])
+@yield('extra-scripts')
 </body>
 </html>

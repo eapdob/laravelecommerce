@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-product')
 
 @section('title', $product->name)
 
