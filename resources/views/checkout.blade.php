@@ -38,9 +38,11 @@
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         @if (auth()->user())
-                            <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   value="{{ auth()->user()->email }}" readonly>
                         @else
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                                   required>
                         @endif
                     </div>
                     <div class="form-group">
@@ -49,7 +51,8 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
+                        <input type="text" class="form-control" id="address" name="address"
+                               value="{{ old('address') }}">
                     </div>
 
                     <div class="half-form">
@@ -59,14 +62,16 @@
                         </div>
                         <div class="form-group">
                             <label for="province">Province</label>
-                            <input type="text" class="form-control" id="province" name="province" value="{{ old('province') }}">
+                            <input type="text" class="form-control" id="province" name="province"
+                                   value="{{ old('province') }}">
                         </div>
                     </div> <!-- end half-form -->
 
                     <div class="half-form">
                         <div class="form-group">
                             <label for="postalcode">Postal Code</label>
-                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{ old('postalcode') }}">
+                            <input type="text" class="form-control" id="postalcode" name="postalcode"
+                                   value="{{ old('postalcode') }}">
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
@@ -130,12 +135,10 @@
                 <div class="checkout-totals">
                     <div class="checkout-totals-left">
                         Subtotal <br>
-                        @if (session('coupon')) Discount ({{ session()->get('coupon')['name'] }}) :
-                            <form action="{{ route('coupon.destroy') }}" method="POST" style="display: inline-block;">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button type="submit" style="font-size: 14px;">Remove</button>
-                            </form><br><hr>
+                        @if (session('coupon'))
+                            Discount ({{ session()->get('coupon')['name'] }}) :
+                            <br>
+                            <hr>
                             New Subtotal<br>
                         @endif
                         Tax (13%)<br>
@@ -155,17 +158,6 @@
                             class="checkout-totals-total">{{ presentPrice($newTotal) }}</span>
                     </div>
                 </div> <!-- end checkout-totals -->
-
-                @if (!session('coupon'))
-                    <div class="checkout-coupons">
-                        <a href="#" class="have-code">Have a Code?</a>
-                        <form action="{{ route('coupon.store') }}" method="POST">
-                            @csrf
-                            <input type="text" name="coupon_code" id="coupon_code">
-                            <button type="submit" class="button button-plain">Apply</button>
-                        </form>
-                    </div>
-                @endif
 
             </div>
 

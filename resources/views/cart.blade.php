@@ -64,7 +64,8 @@
                                     <select class="quantity" data-id="{{ $item->rowId }}">
                                         @foreach ([1,2,3,4,5] as $quantity)
                                             <option
-                                                @if ($item->qty == $quantity) selected=""@endif>{{ $quantity }}</option>
+                                                @if ($item->qty == $quantity) selected=""@endif>{{ $quantity }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
