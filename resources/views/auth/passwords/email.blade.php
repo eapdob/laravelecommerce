@@ -7,49 +7,44 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 mt-2">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="container">
+        <div class="auth-pages">
+            <div class="auth-left">
+                @if (session()->has('status'))
+                    <div class="alert alert-success">
+                        {{ session()->get('status') }}
+                    </div>
+                @endif
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <h2>Forgot Password?</h2>
+                <div class="spacer"></div>
+                <form action="{{ route('password.email') }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Email" required
+                           autofocus>
+                    <div class="login-container">
+                        <button type="submit" class="auth-button">Send Password Reset Link</button>
+                    </div>
+                </form>
+            </div>
+            <div class="auth-right">
+                <h2>Forgotten Password Information</h2>
+                <div class="spacer"></div>
+                <p>Once you submit your email address, we will send a password reset link to the provided email address.
+                    Please allow a few minutes for the email to arrive.</p>
+                <div class="spacer"></div>
+                <p>If you don't see the email in your inbox, be sure to check your spam or junk folder as well.</p>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('extra-scripts')
