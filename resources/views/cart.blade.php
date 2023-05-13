@@ -61,7 +61,7 @@
                                     </form>
                                 </div>
                                 <div>
-                                    <select class="quantity" data-id="{{ $item->rowId }}">
+                                    <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
                                         @foreach ([1,2,3,4,5] as $quantity)
                                             <option
                                                 @if ($item->qty == $quantity) selected=""@endif>{{ $quantity }}
@@ -180,9 +180,13 @@
 
             Array.from(classname).forEach(function (element) {
                 element.addEventListener('change', function () {
+                    debugger;
                     const id = element.getAttribute('data-id');
+                    const productQuantity = element.getAttribute('data-productQuantity');
+
                     axios.patch(`/cart/${id}`, {
-                        quantity: this.value
+                        quantity: this.value,
+                        productQuantity: productQuantity
                     })
                         .then(function (response) {
                             // console.log(response);

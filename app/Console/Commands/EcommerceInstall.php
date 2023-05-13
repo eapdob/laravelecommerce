@@ -119,6 +119,10 @@ class EcommerceInstall extends Command
             '--force' => true,
         ]);
 
+        $this->call('db:seed', [
+            '--class' => 'SettingsTableSeederCustom',
+        ]);
+
         try {
             $this->call('scout:clear', [
                 'model' => 'App\\Models\\Product',
