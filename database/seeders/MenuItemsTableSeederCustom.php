@@ -339,7 +339,7 @@ class MenuItemsTableSeederCustom extends Seeder
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
                 'title' => 'Blog',
-                'url' => 'https://laravelecommerce.loc',
+                'url' => 'https://blog.laravelecommerce.site',
                 'route' => null,
             ]);
             if (!$menuItem->exists) {
