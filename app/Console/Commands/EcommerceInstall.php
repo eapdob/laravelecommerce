@@ -121,6 +121,7 @@ class EcommerceInstall extends Command
 
         $this->call('db:seed', [
             '--class' => 'SettingsTableSeederCustom',
+            '--force' => true,
         ]);
 
         try {
