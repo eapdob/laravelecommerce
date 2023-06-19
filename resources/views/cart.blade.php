@@ -61,11 +61,9 @@
                                     </form>
                                 </div>
                                 <div>
-                                    <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
+                                    <select name="quantity" onchange="updateQuantitySelector(this)" class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
                                         @foreach ([1,2,3,4,5] as $quantity)
-                                            <option
-                                                @if ($item->qty == $quantity) selected=""@endif>{{ $quantity }}
-                                            </option>
+                                            <option value={{ $quantity }} @if ($item->qty == $quantity) selected=""@endif>{{ $quantity }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -175,29 +173,24 @@
 @section('extra-scripts')
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        (function () {
-            const classname = document.querySelectorAll('.quantity');
+        function updateQuantitySelector(sel) {
+            let th = sel;
+            const id = th.getAttribute('data-id');
+            const productQuantity = th.getAttribute('data-productQuantity');
 
-            Array.from(classname).forEach(function (element) {
-                element.addEventListener('change', function () {
-                    debugger;
-                    const id = element.getAttribute('data-id');
-                    const productQuantity = element.getAttribute('data-productQuantity');
-
-                    axios.patch(`/cart/${id}`, {
-                        quantity: this.value,
-                        productQuantity: productQuantity
-                    })
-                        .then(function (response) {
-                            // console.log(response);
-                            window.location.href = '{{ route('cart.index') }}';
-                        })
-                        .catch(function (error) {
-                            // console.log(error);
-                        });
-                });
+            axios.patch(`/cart/${id}`, {
+                quantity: th.value,
+                productQuantity: productQuantity
+            })
+            .then(function (response) {
+                // console.log(response);
+                window.location.href = '{{ route('cart.index') }}'
+            })
+            .catch(function (error) {
+                // console.log(error);
+                window.location.href = '{{ route('cart.index') }}'
             });
-        })();
+        }
     </script>
     <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
