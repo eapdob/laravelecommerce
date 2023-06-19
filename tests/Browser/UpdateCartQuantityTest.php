@@ -23,10 +23,9 @@ class UpdateCartQuantityTest extends DuskTestCase
             $browser->visit('/shop/laptop-1')
                 ->assertSee('Laptop 1')
                 ->click('.button.button-plain')
-                ->visit('/cart')
-                ->waitFor('select[name="quantity"]')
-                ->select('select[name="quantity"]', '2')
-                ->pause(3000)
+                ->assertPathIs('/cart')
+                ->select('.quantity', 2)
+                ->pause(1000)
                 ->assertSee('Quantity was updated successfully');
         });
     }
