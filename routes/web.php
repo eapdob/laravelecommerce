@@ -17,18 +17,16 @@ Route::view('/', 'landing-page');
 
 Route::get('/', 'App\Http\Controllers\LandingPageController@index')->name('landing-page.index');
 Route::get('/shop', 'App\Http\Controllers\ShopController@index')->name('shop.index');
-Route::get('/shop/{id}', 'App\Http\Controllers\ShopController@show')->name('shop.show');
+Route::get('/shop/{product}', 'App\Http\Controllers\ShopController@show')->name('shop.show');
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
-Route::post('/cart', 'App\Http\Controllers\CartController@store')->name('cart.store');
-Route::get('/cart/empty', 'App\Http\Controllers\CartController@empty')->name('cart.empty');
-Route::patch('/cart/{id}', 'App\Http\Controllers\CartController@update')->name('cart.update');
-Route::delete('/cart/{id}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');
-Route::post('/cart/switchToSaveForLater/{id}', 'App\Http\Controllers\CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
+Route::post('/cart/{product}', 'App\Http\Controllers\CartController@store')->name('cart.store');
+Route::patch('/cart/{product}', 'App\Http\Controllers\CartController@update')->name('cart.update');
+Route::delete('/cart/{product}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');
+Route::post('/cart/switchToSaveForLater/{product}', 'App\Http\Controllers\CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
 
-Route::get('/saveForLater/empty', 'App\Http\Controllers\SaveForLaterController@empty')->name('saveForLater.empty');
-Route::delete('/saveForLater/{id}', 'App\Http\Controllers\SaveForLaterController@destroy')->name('saveForLater.destroy');
-Route::post('/saveForLater/switchToCart/{id}', 'App\Http\Controllers\SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
+Route::delete('/saveForLater/{product}', 'App\Http\Controllers\SaveForLaterController@destroy')->name('saveForLater.destroy');
+Route::post('/saveForLater/switchToCart/{product}', 'App\Http\Controllers\SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
 Route::post('/coupon', 'App\Http\Controllers\CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'App\Http\Controllers\CouponsController@destroy')->name('coupon.destroy');
@@ -43,7 +41,6 @@ Route::get('/thankyou', 'App\Http\Controllers\ConfirmationController@index')->na
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

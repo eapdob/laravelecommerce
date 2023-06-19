@@ -66,7 +66,7 @@
             </div>
 
             @if ($product->quantity > 0)
-                <form action="{{ route('cart.store') }}" method="POST">
+                <form action="{{ route('cart.store', $product) }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="{{ $product->id }}">
                     <input type="hidden" name="name" value="{{ $product->name }}">
