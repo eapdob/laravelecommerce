@@ -20,6 +20,7 @@ services:
             dockerfile: ./dockerfiles/chromedriver-dockerfile
         volumes:
             - './php:/app'
+        working_dir: /app
     mysql:
         environment:
             - MYSQL_ROOT_PASSWORD=demo1234
