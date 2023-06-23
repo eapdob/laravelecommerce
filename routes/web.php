@@ -53,3 +53,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/search', [App\Http\Controllers\ShopController::class, 'search'])->name('search');
 
 Route::get('/search-algolia', [App\Http\Controllers\ShopController::class, 'searchAlgolia'])->name('search-algolia');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/my-profile', [App\Http\Controllers\UsersController::class, 'edit'])->name('users.edit');
+    Route::patch('/my-profile', [App\Http\Controllers\UsersController::class, 'update'])->name('users.update');
+
+    Route::get('/my-orders', [App\Http\Controllers\OrdersController::class, 'index'])->name('orders.index');
+    Route::get('/my-orders/{order}', [App\Http\Controllers\OrdersController::class, 'show'])->name('orders.show');
+});

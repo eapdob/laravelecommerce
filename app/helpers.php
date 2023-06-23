@@ -1,11 +1,18 @@
 <?php
 
+use Carbon\Carbon;
+
 function presentPrice($price)
 {
 //        return money_format('$%i', $this->price / 100);
 
     $fmt = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
     return str_replace(',', '', $fmt->formatCurrency($price / 100, 'USD'));
+}
+
+function presentDate($date)
+{
+    return Carbon::parse($date)->format('M d, Y');
 }
 
 function setCategoryActive($slug) {
