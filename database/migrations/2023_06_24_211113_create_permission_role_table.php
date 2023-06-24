@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('permission_role', function (Blueprint $table) {
-            $table->bigInteger('role_id')->unsigned()->index();
+            $table->bigInteger('role_id')->unsigned()->change();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('permission_role', function (Blueprint $table) {
-            $table->integer('role_id')->unsigned()->index()->change();
+            $table->integer('role_id')->unsigned()->change();
         });
     }
 };
