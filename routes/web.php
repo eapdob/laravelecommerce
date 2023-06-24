@@ -61,3 +61,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-orders', [App\Http\Controllers\OrdersController::class, 'index'])->name('orders.index');
     Route::get('/my-orders/{order}', [App\Http\Controllers\OrdersController::class, 'show'])->name('orders.show');
 });
+
+Route::post('/paypal-checkout', 'CheckoutController@paypalCheckout')->name('checkout.paypal');

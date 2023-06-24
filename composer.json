@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.0.2",
         "algolia/algoliasearch-client-php": "^3.3",
+        "braintree/braintree_php": "^6.12",
         "cartalyst/stripe-laravel": "^14.0",
         "guzzlehttp/guzzle": "^7.2",
         "hardevine/shoppingcart": "^3.1",
