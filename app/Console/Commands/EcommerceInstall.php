@@ -61,7 +61,7 @@ class EcommerceInstall extends Command
                 '--force' => true,
             ]);
         } catch (\Exception $e) {
-            $this->error('Algolia credentials incorrect. Your product table is NOT seeded correctly. If you are not using Algolia, remove Searchable trait from App\Models\Product');
+            $this->error('Algolia credentials incorrect. Your products table is NOT seeded correctly. If you are not using Algolia, remove Laravel\Scout\Searchable from App\Product');
         }
 
         $this->call('db:seed', [
@@ -133,7 +133,7 @@ class EcommerceInstall extends Command
                 'model' => 'App\\Models\\Product',
             ]);
         } catch (\Exception $e) {
-            $this->error('Algolia credentials incorrect. Check your .env file.');
+            $this->error('Algolia credentials incorrect. Check your .env file. Make sure ALGOLIA_APP_ID and ALGOLIA_SECRET are correct.');
         }
 
         $this->info('Dummy data installed');

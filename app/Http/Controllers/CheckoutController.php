@@ -37,7 +37,12 @@ class CheckoutController extends Controller
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
         ]);
-        $paypalToken = $gateway->ClientToken()->generate();
+
+        try {
+            $paypalToken = $gateway->ClientToken()->generate();
+        } catch (\Exception $e) {
+            $paypalToken = null;
+        }
 
         return view('checkout')->with([
             'paypalToken' => $paypalToken,
